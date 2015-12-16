@@ -10,7 +10,7 @@ type CommonConfig struct {
 	Port     int       `json:"port"`
 	Logging  bool      `json:"logging"`
 	LogLevel log.Level `json:"log_level"`
-	LogFile  string    `json:"logfile"`
+	LogFile  string    `json:"log_file"`
 	Static   string    `json:"static"`
 }
 

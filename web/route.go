@@ -8,15 +8,38 @@ type Router interface {
 }
 
 // Route 路由表
-type Route struct {
-	Path    string
-	Method  string
-	Handler HTTPAPIFunc
+type Route interface {
+	Path() string
+	Method() string
+	Handler() HTTPAPIFunc
+}
+
+// localRoute defines an individual API route to connect with the docker daemon.
+// It implements router.Route.
+type localRoute struct {
+	method  string
+	path    string
+	handler HTTPAPIFunc
+}
+
+// Handler returns the APIFunc to let the server wrap it in middlewares
+func (l localRoute) Handler() HTTPAPIFunc {
+	return l.handler
+}
+
+// Method returns the http method that the route responds to.
+func (l localRoute) Method() string {
+	return l.method
+}
+
+// Path returns the subpath where the route responds to.
+func (l localRoute) Path() string {
+	return l.path
 }
 
 // NewRoute initializes a new local router for the reouter
 func NewRoute(method, path string, handler HTTPAPIFunc) Route {
-	return Route{method, path, handler}
+	return localRoute{method, path, handler}
 }
 
 // NewGetRoute initializes a new route with the http method GET.
@@ -48,39 +71,3 @@ func NewOptionsRoute(path string, handler HTTPAPIFunc) Route {
 func NewHeadRoute(path string, handler HTTPAPIFunc) Route {
 	return NewRoute("HEAD", path, handler)
 }
-
-/**
-一个模式
-
-type MyRouter struct{
-    routes []web.Route
-}
-
-func (r *myrouter) Routes() []web.Route {
-	return r.routes
-}
-
-func NewMyRouter() web.Router{
-    r := &MyRouter{}
-
-    r.initRoutes()
-
-    return r
-}
-
-func (r *myrouter) initRoutes(){
-    r.routes = []web.Route{
-        //GET
-        web.NewGetRoute("/get", r.getHandler),
-        //...
-    }
-}
-
-// server
-
-main:
-   router := NewMyRouter()
-   server := web.New(configFile)
-   server.Init(router)
-   server.StartServer()
-*/

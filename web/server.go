@@ -60,10 +60,10 @@ func (s *Server) CreateMux() *mux.Router {
 
 	for _, r := range s.router.Routes() {
 
-		f := makeHTTPHandler(r.Handler)
+		f := makeHTTPHandler(r.Handler())
 
-		log.Debugf("Registering %s, %s", r.Method, r.Path)
-		m.Path(r.Path).Methods(r.Method).HandlerFunc(f)
+		log.Debugf("Registering %s, %s", r.Method(), r.Path())
+		m.Path(r.Path()).Methods(r.Method()).HandlerFunc(f)
 
 	}
 

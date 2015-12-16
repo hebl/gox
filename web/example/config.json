@@ -1,0 +1,18 @@
+{
+    "name": "EXAMPLE",
+    "version": "1.0",
+    "host": "localhost",
+    "port": 4200,
+    "logging": true,
+    "log_level": 5,
+    "log_file": "",
+    "static": "",
+    "database": {
+        "db": "db",
+        "host": "localhost",
+        "port": "5432",
+        "name": "gox",
+        "password": "",
+        "poolsize": 5
+    }
+}

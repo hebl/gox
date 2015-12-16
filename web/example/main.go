@@ -1,10 +1,3 @@
-## Web
-   参考了[docker](https://github.com/docker/docker/tree/master/api/server)的实现流程，`docker`提供了一个非常棒的范式。
-
-### Example
-见[Example](example)
-
-```
 package main
 
 import (
@@ -59,9 +52,3 @@ func main() {
 	server.Init(router)
 	server.StartServer()
 }
-
-```
-
-**run**
-
-    go run main.go -c config.json
