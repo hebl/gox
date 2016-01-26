@@ -5,7 +5,7 @@ import (
 
 	"flag"
 
-	"github.com/hebl/gox/web"
+	"github.com/hebl/gox/xweb"
 	"golang.org/x/net/context"
 )
 

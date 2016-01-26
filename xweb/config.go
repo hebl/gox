@@ -1,4 +1,4 @@
-package web
+package xweb
 
 import log "github.com/Sirupsen/logrus"
 

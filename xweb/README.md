@@ -1,4 +1,4 @@
-## Web
+## XWeb
    参考了[docker](https://github.com/docker/docker/tree/master/api/server)的实现流程，`docker`提供了一个非常棒的范式。
 
 ### Example
@@ -12,22 +12,22 @@ import (
 
 	"flag"
 
-	"github.com/hebl/gox/web"
+	"github.com/hebl/gox/xweb"
 	"golang.org/x/net/context"
 )
 
 //MyRouter simple router
 type MyRouter struct {
-	routes []web.Route
+	routes []xweb.Route
 }
 
 //Routes simple interface
-func (mr *MyRouter) Routes() []web.Route {
+func (mr *MyRouter) Routes() []xweb.Route {
 	return mr.routes
 }
 
 //NewMyRouter new router
-func NewMyRouter() web.Router {
+func NewMyRouter() xweb.Router {
 	r := &MyRouter{}
 
 	r.initRoutes()
@@ -36,7 +36,7 @@ func NewMyRouter() web.Router {
 }
 
 func (mr *MyRouter) initRoutes() {
-	mr.routes = []web.Route{
+	mr.routes = []xweb.Route{
 		//GET
 		web.NewGetRoute("/get", mr.getHandler),
 		//...
@@ -55,7 +55,7 @@ func main() {
 	flag.Parse()
 
 	router := NewMyRouter()
-	server := web.New(*configFile)
+	server := xweb.New(*configFile)
 	server.Init(router)
 	server.StartServer()
 }
