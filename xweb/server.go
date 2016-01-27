@@ -9,7 +9,6 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
-	"github.com/hebl/gox/utils"
 )
 
 //Server Web程序
@@ -18,13 +17,11 @@ type Server struct {
 	router Router
 }
 
-//New 新建一个Web实例
-func New(configFile string) *Server {
-	var config Config
-	utils.ParseJSONFile(configFile, &config)
-
+//NewServer 新建一个Web实例
+func NewServer(config *Config, router Router) *Server {
 	server := &Server{
-		config: &config,
+		config: config,
+		router: router,
 	}
 	server.init()
 	return server

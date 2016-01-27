@@ -1,6 +1,10 @@
 package xweb
 
-import log "github.com/Sirupsen/logrus"
+import (
+	"gox/dou/utils"
+
+	log "github.com/Sirupsen/logrus"
+)
 
 //CommonConfig 基础配置信息
 type CommonConfig struct {
@@ -26,7 +30,7 @@ type CommonConfig struct {
 
 //DBConfig 数据库配置
 type DBConfig struct {
-	Database string `json:"db"`
+	Database string `json:"database"`
 	Host     string `json:"host"`
 	Port     string `json:"port"`
 	User     string `json:"user"`
@@ -39,4 +43,12 @@ type DBConfig struct {
 type Config struct {
 	CommonConfig
 	Database DBConfig `json:"database"`
+}
+
+// NewConfig 根据文件生成一个配置信息
+func NewConfig(configFile string) *Config {
+	var config Config
+	utils.ParseJSONFile(configFile, &config)
+
+	return &config
 }
