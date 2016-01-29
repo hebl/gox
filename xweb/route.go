@@ -9,8 +9,8 @@ type Router interface {
 
 // Route 路由表
 type Route interface {
-	Path() string
 	Method() string
+	Path() string
 	Handler() HTTPAPIFunc
 }
 
@@ -22,11 +22,6 @@ type localRoute struct {
 	handler HTTPAPIFunc
 }
 
-// Handler returns the APIFunc to let the server wrap it in middlewares
-func (l localRoute) Handler() HTTPAPIFunc {
-	return l.handler
-}
-
 // Method returns the http method that the route responds to.
 func (l localRoute) Method() string {
 	return l.method
@@ -35,6 +30,11 @@ func (l localRoute) Method() string {
 // Path returns the subpath where the route responds to.
 func (l localRoute) Path() string {
 	return l.path
+}
+
+// Handler returns the APIFunc to let the server wrap it in middlewares
+func (l localRoute) Handler() HTTPAPIFunc {
+	return l.handler
 }
 
 // NewRoute initializes a new local router for the reouter

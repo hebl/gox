@@ -14,7 +14,7 @@ type HTTPAPIFunc func(ctx context.Context, w http.ResponseWriter, r *http.Reques
 // FilterHanderFunc 权限过滤中间件
 /*
  */
-type FilterHanderFunc func(permission int, handler HTTPAPIFunc) HTTPAPIFunc
+type FilterHanderFunc func(permission uint, handler HTTPAPIFunc) HTTPAPIFunc
 
 // Middleware 中间件函数
 type Middleware func(handler HTTPAPIFunc) HTTPAPIFunc
