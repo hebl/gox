@@ -64,13 +64,6 @@ func (s *Server) CreateMux() *mux.Router {
 
 	}
 
-	//绑定静态目录
-	if s.config.Static != "" {
-		log.Debugf("Registering Static directory %s", s.config.Static)
-		m.PathPrefix(s.config.Static).HandlerFunc(FileHandler)
-
-	}
-
 	return m
 }
 
@@ -92,6 +85,13 @@ func makeHTTPHandler(handler HTTPAPIFunc) http.HandlerFunc {
 func (s *Server) StartServer() {
 
 	http.Handle("/", s.CreateMux())
+
+	//绑定静态目录
+	for _, v := range s.config.Static {
+		log.Debugf("Registering Static directory '%s' to '%s' ", v.Filesystem, v.URI)
+		http.Handle(v.URI, http.StripPrefix(v.URI, http.FileServer(http.Dir(v.Filesystem))))
+	}
+
 	err := http.ListenAndServe(fmt.Sprintf(":%d", s.config.Port), nil)
 	if err != nil {
 		log.Errorf("服务器启动错误： %v", err)

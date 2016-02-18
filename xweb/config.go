@@ -8,14 +8,18 @@ import (
 
 //CommonConfig 基础配置信息
 type CommonConfig struct {
-	Name     string    `json:"name"`
-	Version  string    `json:"version"`
-	Host     string    `json:"host"`
-	Port     int       `json:"port"`
-	Logging  bool      `json:"logging"`
-	LogLevel log.Level `json:"log_level"`
-	LogFile  string    `json:"log_file"`
-	Static   string    `json:"static"`
+	Name         string    `json:"name"`
+	Version      string    `json:"version"`
+	Host         string    `json:"host"`
+	Port         int       `json:"port"`
+	Logging      bool      `json:"logging"`
+	LogLevel     log.Level `json:"log_level"`
+	LogFile      string    `json:"log_file"`
+	CookieSecret string    `json:"cookie_secret"`
+	Static       []struct {
+		URI        string `json:"uri"`
+		Filesystem string `json:"filesystem"`
+	} `json:"static"`
 }
 
 // LogLevel
