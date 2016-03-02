@@ -1,7 +1,7 @@
 package xweb
 
 import (
-	"gox/dou/utils"
+	"github.com/hebl/gox/utils"
 
 	log "github.com/Sirupsen/logrus"
 )
