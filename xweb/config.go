@@ -20,6 +20,8 @@ type CommonConfig struct {
 		URI        string `json:"uri"`
 		Filesystem string `json:"filesystem"`
 	} `json:"static"`
+	CertFile string `json:"cert_file"`
+	KeyFile  string `json:"key_file"`
 }
 
 // LogLevel

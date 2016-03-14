@@ -98,3 +98,21 @@ func (s *Server) StartServer() {
 	}
 	log.Debugf("服务器启动 :%d", s.config.Port)
 }
+
+//StartServerTLS 启动https服务
+func (s *Server) StartServerTLS() {
+
+	http.Handle("/", s.CreateMux())
+
+	//绑定静态目录
+	for _, v := range s.config.Static {
+		log.Debugf("Registering Static directory '%s' to '%s' ", v.Filesystem, v.URI)
+		http.Handle(v.URI, http.StripPrefix(v.URI, http.FileServer(http.Dir(v.Filesystem))))
+	}
+
+	err := http.ListenAndServeTLS(fmt.Sprintf(":%d", s.config.Port), s.config.CertFile, s.config.KeyFile, nil)
+	if err != nil {
+		log.Errorf("服务器启动错误： %v", err)
+	}
+	log.Debugf("服务器启动 :%d", s.config.Port)
+}
