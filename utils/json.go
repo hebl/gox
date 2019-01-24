@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 )
 
 //ParseJSONFile 解析JSON文件到对象

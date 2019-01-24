@@ -9,10 +9,10 @@
     "static": [
         {
             "uri": "/assets/",
-            "filesystem": "assets"
+            "filesystem": "assets",
         }
     ],
-    "cookie_secret": "asdnaksdgqawdbnvghfytavsjhdavbdsjahdvfchgtdfhgcd"
+    "cookie_secret": "asdnaksdgqawdbnvghfytavsjhdavbdsjahdvfchgtdfhgcd",
     "database": {
         "db": "db",
         "host": "localhost",
@@ -20,7 +20,7 @@
         "name": "gox",
         "password": "",
         "poolsize": 5
-    }
+    },
     "cert_file": "cert.pem",
     "key_file": "cert.key"
 }

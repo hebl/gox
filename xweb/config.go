@@ -3,7 +3,7 @@ package xweb
 import (
 	"github.com/hebl/gox/utils"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 )
 
 //CommonConfig 基础配置信息
